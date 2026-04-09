@@ -57,12 +57,12 @@ export function SignInForm() {
 
   if (!envReady) {
     return (
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md border-yellow-500/20 bg-yellow-500/5">
         <CardContent className="p-8 text-center">
-          <div className="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400">
+          <div className="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg border border-yellow-500/30 bg-yellow-500/10 text-yellow-500">
             <Shield className="h-6 w-6" />
           </div>
-          <p className="text-sm font-medium text-amber-600 dark:text-amber-400">
+          <p className="text-sm font-medium text-yellow-600 dark:text-yellow-400">
             Configure Firebase environment variables to enable authentication
           </p>
         </CardContent>
@@ -72,25 +72,25 @@ export function SignInForm() {
 
   if (profile && user) {
     return (
-      <Card className="w-full max-w-md shadow-lg">
+      <Card className="w-full max-w-md border-slate-700/40 bg-slate-900/50 backdrop-blur shadow-lg">
         <CardContent className="space-y-6 p-8">
           <div className="text-center">
-            <div className="mx-auto mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10">
-              <Shield className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
+            <div className="mx-auto mb-4 inline-flex h-16 w-16 items-center justify-center rounded-lg border border-green-500/30 bg-green-500/10">
+              <Shield className="h-8 w-8 text-green-400" />
             </div>
-            <Badge variant="success" className="mb-3">
+            <Badge className="mb-3 border-green-500/30 bg-green-500/10 text-green-300">
               Session Active
             </Badge>
-            <h1 className="text-h2 mb-2">Signed in as {profile.role}</h1>
-            <p className="text-body text-muted-foreground">{user.email}</p>
+            <h2 className="text-2xl font-bold mb-2 text-slate-100">Signed in as {profile.role}</h2>
+            <p className="text-sm text-slate-400">{user.email}</p>
           </div>
           
           <div className="space-y-3">
-            <Button className="w-full gap-2" onClick={() => router.push(`/dashboard/${profile.role}`)}>
+            <Button className="w-full gap-2 bg-cyan-500 hover:bg-cyan-600 text-white" onClick={() => router.push(`/dashboard/${profile.role}`)}>
               <LogIn className="h-4 w-4" />
               Open {profile.role} dashboard
             </Button>
-            <Button variant="ghost" className="w-full" onClick={handleSwitchAccount}>
+            <Button variant="outline" className="w-full border-slate-600 text-slate-300 hover:bg-slate-800" onClick={handleSwitchAccount}>
               Sign out to test another account
             </Button>
           </div>
@@ -100,55 +100,55 @@ export function SignInForm() {
   }
 
   return (
-    <Card className="w-full max-w-md shadow-lg">
+    <Card className="w-full max-w-md border-slate-700/40 bg-slate-900/50 backdrop-blur shadow-lg">
       <CardContent className="space-y-6 p-8">
         <div className="text-center">
-          <div className="mx-auto mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10">
-            <Lock className="h-8 w-8 text-primary" />
+          <div className="mx-auto mb-4 inline-flex h-16 w-16 items-center justify-center rounded-lg border border-cyan-500/30 bg-cyan-500/10">
+            <Lock className="h-8 w-8 text-cyan-400" />
           </div>
-          <Badge variant="default" className="mb-3">
+          <Badge className="mb-3 border-cyan-500/30 bg-cyan-500/10 text-cyan-300">
             Secure Access
           </Badge>
-          <h1 className="text-h2 mb-2">Welcome back</h1>
-          <p className="text-body text-muted-foreground">
+          <h2 className="text-2xl font-bold mb-2 text-slate-100">Welcome back</h2>
+          <p className="text-sm text-slate-400">
             Sign in to access your ProctorAI workspace
           </p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground">Email address</label>
+            <label className="text-sm font-medium text-slate-200">Email address</label>
             <div className="relative">
-              <Mail className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Mail className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
               <Input 
                 {...register("email")} 
                 type="email" 
                 placeholder="you@example.com"
-                className="pl-10"
+                className="pl-10 bg-slate-800/50 border-slate-700 text-slate-100 placeholder-slate-500 focus:border-cyan-500 focus:ring-cyan-500"
               />
             </div>
             {errors.email && (
-              <p className="text-xs font-medium text-destructive">{errors.email.message}</p>
+              <p className="text-xs font-medium text-red-400">{errors.email.message}</p>
             )}
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground">Password</label>
+            <label className="text-sm font-medium text-slate-200">Password</label>
             <div className="relative">
-              <Lock className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Lock className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
               <Input 
                 {...register("password")} 
                 type="password" 
                 placeholder="••••••••"
-                className="pl-10"
+                className="pl-10 bg-slate-800/50 border-slate-700 text-slate-100 placeholder-slate-500 focus:border-cyan-500 focus:ring-cyan-500"
               />
             </div>
             {errors.password && (
-              <p className="text-xs font-medium text-destructive">{errors.password.message}</p>
+              <p className="text-xs font-medium text-red-400">{errors.password.message}</p>
             )}
           </div>
 
-          <Button disabled={disabled} className="w-full gap-2">
+          <Button disabled={disabled} className="w-full gap-2 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold">
             {submitting ? (
               <>
                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
@@ -163,9 +163,9 @@ export function SignInForm() {
           </Button>
         </form>
 
-        <div className="rounded-xl border border-border bg-muted/30 p-4">
-          <p className="text-xs text-muted-foreground">
-            <strong className="font-semibold text-foreground">Demo accounts:</strong> Use the bootstrap script to create admin/teacher/student accounts for testing.
+        <div className="rounded-lg border border-slate-700 bg-slate-800/30 p-4">
+          <p className="text-xs text-slate-400">
+            <strong className="font-semibold text-slate-300">Demo accounts:</strong> Use the bootstrap script to create admin/teacher/student accounts for testing.
           </p>
         </div>
       </CardContent>

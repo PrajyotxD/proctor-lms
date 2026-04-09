@@ -57,15 +57,15 @@ export function StudentDashboard() {
     <RoleGuard roles={["student"]}>
       <section className="space-y-8">
         {/* Hero Header */}
-        <Card className="relative overflow-hidden rounded-3xl border-slate-200/60 bg-gradient-to-br from-white to-slate-50 dark:border-slate-700/40 dark:from-slate-900 dark:to-slate-800">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(99,102,241,0.12),transparent_50%)]" />
+        <Card className="relative overflow-hidden rounded-2xl border-slate-700/40 bg-gradient-to-br from-slate-900 to-slate-950 dark:border-slate-700/40 dark:from-slate-900 dark:to-slate-950">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(6,182,212,0.15),transparent_50%)]" />
           <CardContent className="relative space-y-4 p-8">
-            <Badge className="w-fit border-indigo-200 bg-indigo-50 text-indigo-700 dark:border-indigo-500/30 dark:bg-indigo-500/10 dark:text-indigo-300">
+            <Badge className="w-fit border-cyan-500/30 bg-cyan-500/10 text-cyan-300">
               Student Portal
             </Badge>
             <div>
-              <h1 className="text-display mb-2">Student Workspace</h1>
-              <p className="text-body text-slate-600 dark:text-slate-400">
+              <h1 className="text-5xl font-bold mb-2 text-slate-50">Student Workspace</h1>
+              <p className="text-lg text-slate-400">
                 Upcoming exams, previous attempts, and proctoring outcomes
               </p>
             </div>
@@ -77,41 +77,41 @@ export function StudentDashboard() {
 
         {/* Stats Grid - Bento Style */}
         <div className="grid gap-5 sm:grid-cols-3">
-          <Card className="group relative overflow-hidden rounded-2xl border-slate-200 bg-white transition-all hover:shadow-lg dark:border-slate-700/60 dark:bg-slate-800/50">
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+          <Card className="group relative overflow-hidden rounded-lg border-slate-700/40 bg-slate-800/40 backdrop-blur-sm hover:border-cyan-500/50 hover:bg-slate-800/60 transition-all">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
             <CardContent className="relative space-y-3 p-6">
-              <div className="inline-flex rounded-xl border border-indigo-200 bg-indigo-50 p-2.5 text-indigo-600 dark:border-indigo-500/30 dark:bg-indigo-500/10 dark:text-indigo-400">
+              <div className="inline-flex rounded-lg border border-cyan-500/30 bg-cyan-500/10 p-2.5 text-cyan-400">
                 <CalendarClock size={18} strokeWidth={2} />
               </div>
               <div>
-                <p className="text-caption mb-1">Upcoming Exams</p>
-                <p className="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">{upcoming.length}</p>
+                <p className="text-xs font-medium text-slate-400 uppercase tracking-wider mb-1">Upcoming</p>
+                <p className="text-4xl font-bold tracking-tight text-slate-100">{upcoming.length}</p>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="group relative overflow-hidden rounded-2xl border-slate-200 bg-white transition-all hover:shadow-lg dark:border-slate-700/60 dark:bg-slate-800/50">
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+          <Card className="group relative overflow-hidden rounded-lg border-slate-700/40 bg-slate-800/40 backdrop-blur-sm hover:border-green-500/50 hover:bg-slate-800/60 transition-all">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
             <CardContent className="relative space-y-3 p-6">
-              <div className="inline-flex rounded-xl border border-emerald-200 bg-emerald-50 p-2.5 text-emerald-600 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400">
+              <div className="inline-flex rounded-lg border border-green-500/30 bg-green-500/10 p-2.5 text-green-400">
                 <CheckCircle2 size={18} strokeWidth={2} />
               </div>
               <div>
-                <p className="text-caption mb-1">Total Attempts</p>
-                <p className="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">{attempts.length}</p>
+                <p className="text-xs font-medium text-slate-400 uppercase tracking-wider mb-1">Attempts</p>
+                <p className="text-4xl font-bold tracking-tight text-slate-100">{attempts.length}</p>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="group relative overflow-hidden rounded-2xl border-slate-200 bg-white transition-all hover:shadow-lg dark:border-slate-700/60 dark:bg-slate-800/50">
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-violet-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+          <Card className="group relative overflow-hidden rounded-lg border-slate-700/40 bg-slate-800/40 backdrop-blur-sm hover:border-blue-500/50 hover:bg-slate-800/60 transition-all">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
             <CardContent className="relative space-y-3 p-6">
-              <div className="inline-flex rounded-xl border border-violet-200 bg-violet-50 p-2.5 text-violet-600 dark:border-violet-500/30 dark:bg-violet-500/10 dark:text-violet-400">
+              <div className="inline-flex rounded-lg border border-blue-500/30 bg-blue-500/10 p-2.5 text-blue-400">
                 <ShieldAlert size={18} strokeWidth={2} />
               </div>
               <div>
-                <p className="text-caption mb-1">Avg Proctoring Score</p>
-                <p className="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+                <p className="text-xs font-medium text-slate-400 uppercase tracking-wider mb-1">Avg Score</p>
+                <p className="text-4xl font-bold tracking-tight text-slate-100">
                   {attempts.length ? Math.round(attempts.reduce((acc, cur) => acc + cur.proctoringScore, 0) / attempts.length) : 0}
                 </p>
               </div>
@@ -120,19 +120,19 @@ export function StudentDashboard() {
         </div>
 
         {/* Upcoming Exams Section */}
-        <Card className="rounded-2xl border-slate-200 bg-white dark:border-slate-700/60 dark:bg-slate-800/50">
+        <Card className="rounded-lg border-slate-700/40 bg-slate-800/40 backdrop-blur-sm">
           <CardContent className="space-y-5 p-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-heading">Upcoming Exams</h2>
-              <Badge variant="secondary" className="text-xs">
+              <h2 className="text-2xl font-bold text-slate-100">Upcoming Exams</h2>
+              <Badge className="text-xs border-cyan-500/30 bg-cyan-500/10 text-cyan-300">
                 {upcoming.length} scheduled
               </Badge>
             </div>
 
             {!profile?.verifiedAt && (
-              <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-500/30 dark:bg-amber-500/10">
-                <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
-                  ⚠️ Complete verification above before taking exams
+              <div className="rounded-lg border border-yellow-500/30 bg-yellow-500/10 p-4">
+                <p className="text-sm font-medium text-yellow-200">
+                  Complete verification above before taking exams
                 </p>
               </div>
             )}
@@ -142,23 +142,23 @@ export function StudentDashboard() {
                 <Link
                   key={exam.id}
                   href={profile?.verifiedAt ? `/exam/${exam.id}` : "#"}
-                  className="group block rounded-xl border border-slate-200 bg-slate-50/50 p-5 transition-all hover:-translate-y-0.5 hover:border-indigo-300 hover:bg-white hover:shadow-md dark:border-slate-700/60 dark:bg-slate-800/30 dark:hover:border-indigo-500/50 dark:hover:bg-slate-800/60"
+                  className="group block rounded-lg border border-slate-700/40 bg-slate-900/50 p-5 transition-all hover:border-cyan-500/50 hover:bg-slate-900/70 dark:border-slate-700/60 dark:bg-slate-800/30 dark:hover:border-cyan-500/50 dark:hover:bg-slate-800/60"
                   onClick={(e) => {
                     if (!profile?.verifiedAt) e.preventDefault();
                   }}
                 >
                   <div className="flex items-start justify-between">
-                    <div className="space-y-1">
-                      <p className="text-subheading group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+                    <div className="space-y-2">
+                      <p className="text-lg font-semibold text-slate-100 group-hover:text-cyan-300 transition-colors">
                         {exam.title}
                       </p>
-                      <p className="text-caption flex items-center gap-2">
+                      <p className="text-sm text-slate-400 flex items-center gap-2">
                         <CalendarClock size={14} />
                         {new Date(exam.startsAt).toLocaleString()}
                       </p>
                     </div>
                     {profile?.verifiedAt && (
-                      <div className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition-colors group-hover:border-indigo-300 group-hover:bg-indigo-50 group-hover:text-indigo-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:group-hover:border-indigo-500/50 dark:group-hover:bg-indigo-500/10 dark:group-hover:text-indigo-300">
+                      <div className="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-semibold text-cyan-300 transition-colors group-hover:border-cyan-400 group-hover:bg-cyan-500/20 group-hover:text-cyan-200">
                         Start Exam →
                       </div>
                     )}
@@ -166,8 +166,8 @@ export function StudentDashboard() {
                 </Link>
               ))}
               {upcoming.length === 0 && (
-                <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-8 text-center dark:border-slate-700 dark:bg-slate-800/30">
-                  <p className="text-body text-slate-500 dark:text-slate-400">No upcoming exams scheduled</p>
+                <div className="rounded-lg border border-dashed border-slate-700 bg-slate-800/30 p-8 text-center">
+                  <p className="text-sm text-slate-400">No upcoming exams scheduled</p>
                 </div>
               )}
             </div>

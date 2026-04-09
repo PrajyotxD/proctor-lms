@@ -1,75 +1,75 @@
 @import "tailwindcss";
 
-/* Modern Professional Design System - Dark-First Approach */
+/* Supabase Color System */
 :root {
-  /* Light Theme - Clean White */
-  --background: #ffffff;
-  --foreground: #0f1419;
-  --card: #f8fafc;
-  --card-foreground: #0f1419;
+  /* Light Theme */
+  --background: #f8f9fa;
+  --foreground: #11181c;
+  --card: #ffffff;
+  --card-foreground: #11181c;
   --popover: #ffffff;
-  --popover-foreground: #0f1419;
+  --popover-foreground: #11181c;
   
-  /* Primary Brand - Modern Cyan/Blue */
-  --primary: #0ea5e9;
+  /* Primary Brand - Supabase Green */
+  --primary: #34b27b;
   --primary-foreground: #ffffff;
   
-  /* Secondary - Deep Blue Accent */
-  --secondary: #3b82f6;
+  /* Secondary - Darker Green */
+  --secondary: #2a8a5f;
   --secondary-foreground: #ffffff;
   
-  /* Neutral Grays - Refined palette */
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #06b6d4;
+  /* Neutral Grays */
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --accent: #34b27b;
   --accent-foreground: #ffffff;
   
   /* Semantic Colors */
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --success: #10b981;
+  --success: #34b27b;
   --warning: #f59e0b;
   
   /* Borders & Inputs */
-  --border: #e2e8f0;
+  --border: #e5e7eb;
   --input: #ffffff;
-  --ring: #0ea5e9;
-  --radius: 0.75rem;
+  --ring: #34b27b;
+  --radius: 0.5rem;
 }
 
-/* Dark Theme - Sophisticated Dark with Cyan/Blue Accents */
+/* Dark Theme - Supabase Dark */
 :root[data-theme="dark"] {
-  --background: #0a0e27;
-  --foreground: #f0f4f8;
-  --card: #141b2f;
-  --card-foreground: #f0f4f8;
-  --popover: #1a2332;
-  --popover-foreground: #f0f4f8;
+  --background: #11181c;
+  --foreground: #f8f9fa;
+  --card: #1a202c;
+  --card-foreground: #f8f9fa;
+  --popover: #1f2937;
+  --popover-foreground: #f8f9fa;
   
-  /* Primary Brand - Cyan */
-  --primary: #06b6d4;
-  --primary-foreground: #0a0e27;
+  /* Primary Brand - Supabase Green */
+  --primary: #34b27b;
+  --primary-foreground: #ffffff;
   
-  /* Secondary - Blue */
-  --secondary: #3b82f6;
+  /* Secondary - Darker Green */
+  --secondary: #2a8a5f;
   --secondary-foreground: #ffffff;
   
   /* Neutral Grays */
-  --muted: #1e2d42;
-  --muted-foreground: #a0aec0;
-  --accent: #06b6d4;
-  --accent-foreground: #0a0e27;
+  --muted: #2d3748;
+  --muted-foreground: #cbd5e0;
+  --accent: #34b27b;
+  --accent-foreground: #ffffff;
   
   /* Semantic */
   --destructive: #f87171;
-  --destructive-foreground: #0a0e27;
-  --success: #34d399;
+  --destructive-foreground: #ffffff;
+  --success: #34b27b;
   --warning: #fbbf24;
   
   /* Borders & Inputs */
-  --border: #1e2d42;
-  --input: #1a2332;
-  --ring: #06b6d4;
+  --border: #374151;
+  --input: #1f2937;
+  --ring: #34b27b;
 }
 
 @theme inline {
@@ -221,33 +221,25 @@ a {
   color: var(--muted-foreground);
 }
 
-/* Glassmorphism - Modern Frosted Glass Effect */
+/* Glassmorphism - Subtle and Clean */
 .glass {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--card);
+  border: 1px solid var(--border);
 }
 
 :root[data-theme="dark"] .glass {
-  background: rgba(20, 27, 47, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(6, 182, 212, 0.15);
+  background: var(--card);
+  border: 1px solid var(--border);
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: var(--card);
+  border: 1px solid var(--border);
 }
 
 :root[data-theme="dark"] .glass-strong {
-  background: rgba(20, 27, 47, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(6, 182, 212, 0.2);
+  background: var(--card);
+  border: 1px solid var(--border);
 }
 
 /* Shadows - Modern Elevated Design */
@@ -420,12 +412,9 @@ a {
   background: #64748b;
 }
 
-/* Gradient Text - Simplified */
+/* Gradient Text - Using Primary Color */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary);
 }
 
 /* Card Hover Effects - Subtle */

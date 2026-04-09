@@ -12,12 +12,12 @@ export function Badge({
   variant?: Variant;
 }) {
   const styles: Record<Variant, string> = {
-    default: "border-cyan-500/30 bg-cyan-500/10 text-cyan-300",
-    secondary: "border-slate-600 bg-slate-700 text-slate-100",
-    success: "border-green-500/30 bg-green-500/10 text-green-300 dark:text-green-400",
-    warning: "border-yellow-500/30 bg-yellow-500/10 text-yellow-300 dark:text-yellow-400",
-    danger: "border-red-500/30 bg-red-500/10 text-red-300 dark:text-red-400",
-    outline: "border-slate-600 text-slate-300 bg-transparent",
+    default: "border-primary/30 bg-primary/10 text-primary",
+    secondary: "border-border bg-muted text-foreground",
+    success: "border-primary/30 bg-primary/10 text-primary",
+    warning: "border-yellow-500/30 bg-yellow-500/10 text-yellow-700 dark:text-yellow-300",
+    danger: "border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-300",
+    outline: "border-border text-foreground bg-transparent",
   };
 
   return (

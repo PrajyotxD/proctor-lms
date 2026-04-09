@@ -25,23 +25,23 @@ export default function RootLayout({
         <AppProviders>
           <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-8 p-4 md:p-8">
             {/* Modern Header with Glassmorphism */}
-            <header className="glass-strong sticky top-4 z-50 flex items-center justify-between rounded-2xl px-6 py-4 shadow-lg">
+            <header className="glass sticky top-4 z-50 flex items-center justify-between rounded-xl px-6 py-4 shadow-md">
               <Link href="/" className="group flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-600 shadow-lg transition-transform group-hover:scale-105 group-hover:shadow-glow">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg transition-all group-hover:shadow-xl group-hover:scale-105">
                   <Shield className="h-5 w-5 text-white" strokeWidth={2.5} />
                 </div>
                 <div className="flex flex-col">
                   <span className="text-sm font-bold tracking-tight text-foreground">
-                    Proctor<span className="gradient-text">AI</span>
+                    Proctor<span className="text-primary">AI</span>
                   </span>
                   <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                    Enterprise LMS
+                    Enterprise
                   </span>
                 </div>
               </Link>
               <div className="flex items-center gap-3">
                 <Link href="/signin">
-                  <button className="rounded-xl border border-border bg-secondary px-4 py-2 text-sm font-semibold text-secondary-foreground transition-all hover:border-primary/50 hover:bg-secondary/80 active:scale-[0.98]">
+                  <button className="rounded-lg border border-border bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-all hover:shadow-md hover:scale-105 active:scale-95">
                     Sign in
                   </button>
                 </Link>

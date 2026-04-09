@@ -10,7 +10,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="inline-flex items-center gap-2 rounded-xl border border-border/90 bg-panel/80 px-3 py-2 text-xs font-medium text-foreground transition hover:border-primary/60"
+      className="inline-flex items-center gap-2 rounded-lg border border-slate-600 bg-slate-800/50 px-3 py-2 text-xs font-medium text-slate-200 transition hover:border-cyan-500 hover:bg-slate-800"
       aria-label="Toggle theme"
     >
       {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}

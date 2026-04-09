@@ -1,165 +1,162 @@
 import Link from "next/link";
-import { BarChart3, BrainCircuit, ShieldCheck, Sparkles, Eye, Database, Check } from "lucide-react";
+import { ArrowRight, BarChart3, BrainCircuit, Radar, ShieldCheck, Smartphone, Sparkles, Eye, Monitor, UserCheck } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { SectionTitle } from "@/components/ui/section-title";
+
+const features = [
+  { icon: ShieldCheck, title: "Zero-Loophole Proctoring", text: "Realtime signals for focus, face presence, orientation, and evidence capture." },
+  { icon: BrainCircuit, title: "AI Monitoring", text: "Face checks, cheating prediction, and adaptive risk scoring with explainable alerts." },
+  { icon: Radar, title: "Teacher Command Center", text: "Matrix mode, heatmaps, analytics, freeze controls, grading, and alerts in one place." },
+  { icon: Smartphone, title: "Cross-Platform", text: "Mobile + desktop parity with responsive, battery-aware proctoring behavior." },
+  { icon: BarChart3, title: "Progress Intelligence", text: "Performance trends, proctoring scorecards, and subject-level analytics." },
+  { icon: Sparkles, title: "Modern Experience", text: "Premium UI, dark/light themes, and polished interactions across flows." },
+];
 
 export default function HomePage() {
   return (
-    <section className="space-y-20 py-16">
-      {/* Hero Section - Supabase Style */}
-      <div className="text-center space-y-8 max-w-4xl mx-auto px-4">
-        <div className="space-y-4">
-          <h1 className="text-6xl md:text-7xl font-bold text-foreground text-balance leading-tight">
-            Build in a weekend
-            <span className="block text-primary">Scale to millions</span>
-          </h1>
-        </div>
-        
-        <p className="text-lg md:text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
-          ProctorAI is the complete exam proctoring platform. Start your project with secure authentication, real-time monitoring, AI-powered integrity checks, and instant reporting.
-        </p>
-        
-        <div className="flex flex-wrap gap-4 justify-center pt-6">
-          <Link href="/signin">
-            <Button className="gap-2 px-8 py-3 text-base font-semibold">
-              Start your project
-            </Button>
-          </Link>
-          <Link href="/dashboard">
-            <Button variant="outline" className="gap-2 px-8 py-3 text-base font-semibold">
-              Request a demo
-            </Button>
-          </Link>
-        </div>
-      </div>
+    <section className="space-y-16">
+      {/* Hero Section - Clean Professional Design */}
+      <Card className="relative overflow-hidden rounded-lg" hover={false}>
+        <CardContent className="grid gap-12 p-8 md:grid-cols-2 md:gap-16 md:p-16">
+          {/* Left: Value Proposition */}
+          <div className="flex flex-col justify-center space-y-8">
+            <Badge className="w-fit">
+              ProctorAI LMS
+            </Badge>
+            
+            <div className="space-y-4">
+              <h1 className="text-5xl md:text-6xl font-bold text-balance leading-tight">
+                Secure Exam
+                <span className="block text-primary">Proctoring</span>
+              </h1>
+            </div>
+            
+            <p className="text-lg text-balance text-muted-foreground max-w-lg">
+              Enterprise-grade AI-powered proctoring for institutions running high-stakes online assessments with confidence.
+            </p>
+            
+            <div className="flex flex-wrap gap-4 pt-4">
+              <Link href="/signin">
+                <Button className="gap-2 px-6 py-3 text-base">
+                  Get Started <ArrowRight size={16} />
+                </Button>
+              </Link>
+              <Link href="/dashboard">
+                <Button variant="outline" className="gap-2 px-6 py-3 text-base">
+                  Dashboard →
+                </Button>
+              </Link>
+            </div>
+          </div>
 
-      {/* Feature Grid - Supabase Bento Style */}
-      <div className="space-y-6">
-        {/* Top Row - 3 Large Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Full Stack Database */}
-          <Card className="group relative overflow-hidden md:col-span-1">
-            <CardContent className="space-y-6 p-8">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <Database className="h-5 w-5" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground">Full Stack Proctoring</h3>
+          {/* Right: Live Monitoring Cards */}
+          <div className="flex flex-col justify-center">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 mb-4">
+                <p className="text-xs font-semibold uppercase tracking-widest text-primary">Live Monitoring</p>
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                  </span>
+                  <span className="text-xs text-primary">Active</span>
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  Complete exam integrity with secure authentication, real-time monitoring, and AI-powered detection.
-                </p>
               </div>
               
-              <div className="space-y-3 pt-4 border-t border-border">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
-                  <span>100% secure authentication</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
-                  <span>Real-time AI monitoring</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
-                  <span>Instant detailed reports</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Authentication */}
-          <Card className="group relative overflow-hidden md:col-span-1">
-            <CardContent className="space-y-6 p-8">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <Eye className="h-5 w-5" />
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[
+                  { name: "Student 101", trust: 92, icon: "✓" },
+                  { name: "Student 144", trust: 68, icon: "⚠" },
+                  { name: "Student 076", trust: 81, icon: "✓" },
+                  { name: "Student 219", trust: 49, icon: "✕" },
+                ].map((student) => (
+                  <div key={student.name} className="group rounded-lg border border-border bg-muted/30 p-4 hover:border-primary/30 hover:bg-muted/50 transition-all">
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <p className="text-sm font-medium text-foreground">{student.name}</p>
+                      </div>
+                      <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${
+                        student.trust >= 80 
+                          ? "bg-primary/20 text-primary" 
+                          : student.trust >= 60 
+                          ? "bg-yellow-500/20 text-yellow-700 dark:text-yellow-300" 
+                          : "bg-red-500/20 text-red-700 dark:text-red-300"
+                      }`}>
+                        {student.trust}%
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted-foreground">Trust Score</p>
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground">Role-Based Access</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Secure authentication for admins, teachers, and students with enterprise-grade security protocols.
-                </p>
+                ))}
               </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
-              <div className="space-y-2 pt-4 border-t border-border">
-                <div className="text-xs font-semibold text-muted-foreground uppercase">Sample Credentials</div>
-                <div className="space-y-1">
-                  <code className="block text-xs text-muted-foreground font-mono">admin@school.edu</code>
-                  <code className="block text-xs text-muted-foreground font-mono">teacher@school.edu</code>
-                  <code className="block text-xs text-muted-foreground font-mono">student@school.edu</code>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* AI Detection */}
-          <Card className="group relative overflow-hidden md:col-span-1">
-            <CardContent className="space-y-6 p-8">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <BrainCircuit className="h-5 w-5" />
+      {/* Feature Grid - Bento Box Layout */}
+      <section className="space-y-8">
+        <div className="text-center space-y-3">
+          <Badge className="inline-block">Features</Badge>
+          <h2 className="text-4xl font-bold">Enterprise-grade Capabilities</h2>
+          <p className="text-muted-foreground mx-auto max-w-2xl text-balance">
+            Comprehensive exam operations with AI-powered monitoring and real-time analytics
+          </p>
+        </div>
+        
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {features.slice(0, 4).map((feature) => {
+            const Icon = feature.icon;
+            return (
+              <Card key={feature.title} className="group">
+                <CardContent className="space-y-4 p-6">
+                  <div className="inline-flex rounded-lg border border-primary/30 bg-primary/10 p-3 text-primary group-hover:border-primary/50 group-hover:bg-primary/15 transition-all">
+                    <Icon size={20} strokeWidth={2} />
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground">AI Integrity Check</h3>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Advanced AI models detect suspicious behavior, tab switches, and unauthorized access instantly.
-                </p>
-              </div>
-
-              <div className="space-y-2 pt-4 border-t border-border">
-                <div className="text-xs font-semibold text-muted-foreground uppercase">Detection Features</div>
-                <div className="space-y-1">
-                  <div className="text-xs text-muted-foreground">• Face detection & verification</div>
-                  <div className="text-xs text-muted-foreground">• Tab switch detection</div>
-                  <div className="text-xs text-muted-foreground">• Audio/video analysis</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+                  <h3 className="text-lg font-semibold leading-tight text-foreground">{feature.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{feature.text}</p>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
+      </section>
 
-        {/* Bottom Row - 2 Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="group relative overflow-hidden">
-            <CardContent className="space-y-6 p-8">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <BarChart3 className="h-5 w-5" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground">Instant Analytics</h3>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                View detailed reports, student performance metrics, integrity scores, and trends instantly.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="group relative overflow-hidden">
-            <CardContent className="space-y-6 p-8">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <Sparkles className="h-5 w-5" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground">Scalable Infrastructure</h3>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Handle thousands of concurrent exams with enterprise-grade infrastructure and uptime.
-              </p>
-            </CardContent>
-          </Card>
+      {/* Extended Features */}
+      <section className="space-y-8">
+        <div className="text-center space-y-3">
+          <h2 className="text-4xl font-bold">Operations Intelligence</h2>
+          <p className="text-muted-foreground mx-auto max-w-2xl text-balance">
+            Signal-driven monitoring, evidence capture, and analytics for administrators and educators
+          </p>
         </div>
-      </div>
+        
+        <div className="grid gap-5 md:grid-cols-2">
+          {features.slice(4).map((feature) => {
+            const Icon = feature.icon;
+            return (
+              <Card key={feature.title} className="group">
+                <CardContent className="space-y-4 p-6">
+                  <div className="inline-flex rounded-lg border border-primary/30 bg-primary/10 p-3 text-primary group-hover:border-primary/50 group-hover:bg-primary/15 transition-all">
+                    <Icon size={20} strokeWidth={2} />
+                  </div>
+                  <h3 className="text-lg font-semibold leading-tight text-foreground">{feature.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{feature.text}</p>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      </section>
 
-      {/* Trust Section */}
-      <div className="text-center space-y-4">
+      {/* Tech Stack Badge */}
+      <section className="glass rounded-lg px-8 py-6 text-center">
         <p className="text-sm font-medium text-muted-foreground">
-          Trusted by fast-growing institutions worldwide
+          Powered by <span className="font-semibold text-foreground">Next.js 16</span> • <span className="font-semibold text-foreground">Firebase</span> • <span className="font-semibold text-foreground">TensorFlow.js</span>
         </p>
-      </div>
+      </section>
     </section>
   );
 }

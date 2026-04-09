@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function roleIn(roles) {
+      return signedIn() && request.auth.token.role in roles;
+    }
+
+    function owner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    match /users/{uid} {
+      allow read: if owner(uid) || roleIn(['admin']);
+      allow create: if owner(uid) || roleIn(['admin']);
+      allow update: if owner(uid) || roleIn(['admin']);
+      allow delete: if roleIn(['admin']);
+    }
+
+    match /subjects/{subjectId} {
+      allow read: if signedIn();
+      allow write: if roleIn(['admin', 'teacher']);
+    }
+
+    match /exams/{examId} {
+      allow read: if signedIn();
+      allow write: if roleIn(['admin', 'teacher']);
+    }
+
+    match /attempts/{attemptId} {
+      allow read: if signedIn();
+      allow create, update: if roleIn(['student']) || roleIn(['teacher']) || roleIn(['admin']);
+      allow delete: if roleIn(['admin']);
+    }
+
+    match /incidents/{incidentId} {
+      allow read: if roleIn(['admin', 'teacher']) || owner(resource.data.studentId);
+      allow create: if roleIn(['student', 'teacher', 'admin']);
+      allow update, delete: if roleIn(['admin']);
+    }
+
+    match /attemptControls/{attemptId} {
+      allow read: if signedIn();
+      allow create, update: if roleIn(['teacher', 'admin']);
+      allow delete: if roleIn(['admin']);
+    }
+
+    match /verifications/{uid} {
+      allow read: if owner(uid) || roleIn(['admin', 'teacher']);
+      allow create, update: if owner(uid) || roleIn(['admin']);
+      allow delete: if roleIn(['admin']);
+    }
+  }
+}

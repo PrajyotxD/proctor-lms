@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ProctorAI LMS (Next.js + Firebase)
 
-## Getting Started
+Production-oriented scaffold for a cross-platform LMS with realtime proctoring.
 
-First, run the development server:
+## Stack
+- Next.js 16 (App Router)
+- React 19
+- Firebase (Auth, Firestore, Storage)
+- Zod + React Hook Form
+- Recharts
+- TensorFlow.js + blazeface
+- Tesseract.js (scratchpad OCR)
+
+## Setup
+1. Copy `.env.example` to `.env.local` and fill Firebase values (apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId, measurementId).
+2. Create Firebase Authentication users and matching `users/{uid}` documents with `role` (`admin|teacher|student`).
+3. Run:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Data Model (Core Collections)
+- `users`
+- `subjects`
+- `exams`
+- `attempts`
+- `incidents`
+- `attemptControls`
+- `verifications`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Key Routes
+- `/signin`
+- `/dashboard`
+- `/dashboard/student`
+- `/dashboard/teacher`
+- `/dashboard/admin`
+- `/exam/[examId]`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Student Verification
+- Students must register roll number and capture selfie in dashboard verification card.
+- Verification metadata stored in `verifications/{uid}` and mirrored in `users/{uid}`.
+- Verification selfie stored at `verification/{uid}/...` in Storage.
 
-## Learn More
+## Proctoring Logic Included
+- Visibility + blur monitoring
+- Copy/paste/context menu interception
+- Mobile orientation anomaly detection
+- AI face checks (missing face, multiple faces)
+- Gaze-away signal based on prolonged hidden state
+- Incident cooldown guard to reduce duplicate alerts
+- Teacher remote freeze/warning via `attemptControls`
+- Evidence capture:
+  - Desktop: short screen recording clip on incident (when supported)
+  - Mobile: webcam frame snapshot fallback
 
-To learn more about Next.js, take a look at the following resources:
+## Student Wow Features
+- Holographic HUD (simulated focus + heart rate)
+- AI Study Buddy (technical/time-management only)
+- Digital Scratchpad with OCR export
+- Dynamic exam risk theme (calm -> alert)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Teacher Features
+- Live Gaze Heatmap view
+- Matrix mode highlighting high-risk attempts
+- AI cheating prediction panel (risk heuristics)
+- Manual grading panel with score override + text feedback + audio upload
+- Realtime incident log and one-click freeze/warn
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Security
+- Firestore rules in `firestore.rules`
+- Storage rules in `storage.rules`
+- Role should be assigned in custom claims for strict rule evaluation.

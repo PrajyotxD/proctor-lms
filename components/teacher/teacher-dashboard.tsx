@@ -84,19 +84,18 @@ export function TeacherDashboard() {
     <RoleGuard roles={["teacher"]}>
       <section className="space-y-8">
         {/* War Room Header */}
-        <Card className="relative overflow-hidden border-slate-700/40 bg-gradient-to-br from-slate-900 to-slate-950" hover={false}>
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(6,182,212,0.15),transparent_50%)]" />
-          <CardContent className="relative flex flex-wrap items-center justify-between gap-4 p-8">
+        <Card hover={false}>
+          <CardContent className="flex flex-wrap items-center justify-between gap-4 p-8">
             <div className="space-y-3">
-              <Badge className="border-cyan-500/30 bg-cyan-500/10 text-cyan-300">Teacher Control Center</Badge>
-              <h1 className="text-5xl font-bold text-slate-50">Command Center</h1>
-              <p className="text-balance text-base text-slate-300">
+              <Badge>Teacher Control Center</Badge>
+              <h1 className="text-5xl font-bold text-foreground">Command Center</h1>
+              <p className="text-balance text-base text-muted-foreground">
                 Realtime monitoring, analytics, prediction, and exam lifecycle control
               </p>
             </div>
             <Button 
               onClick={() => setMatrixMode((v) => !v)} 
-              className="gap-2 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold"
+              className="gap-2"
             >
               <Sparkles size={16} />
               {matrixMode ? "Disable" : "Enable"} Matrix Mode
@@ -106,33 +105,33 @@ export function TeacherDashboard() {
 
         {/* Stats Grid */}
         <div className="grid gap-5 sm:grid-cols-3">
-          <Card className="border-slate-700/40 bg-slate-800/40 backdrop-blur-sm hover:border-green-500/50 hover:bg-slate-800/60 transition-all">
+          <Card className="group">
             <CardContent className="p-6">
-              <div className="mb-3 flex items-center gap-2 text-sm font-medium text-green-400">
+              <div className="mb-3 flex items-center gap-2 text-sm font-medium text-primary">
                 <Activity size={16} strokeWidth={2.5} />
                 Active Attempts
               </div>
-              <p className="text-4xl font-bold tracking-tight text-slate-100">{activeAttempts.length}</p>
+              <p className="text-4xl font-bold tracking-tight text-foreground">{activeAttempts.length}</p>
             </CardContent>
           </Card>
           
-          <Card className="border-slate-700/40 bg-slate-800/40 backdrop-blur-sm hover:border-red-500/50 hover:bg-slate-800/60 transition-all">
+          <Card className="group">
             <CardContent className="p-6">
-              <div className="mb-3 flex items-center gap-2 text-sm font-medium text-red-400">
+              <div className="mb-3 flex items-center gap-2 text-sm font-medium text-destructive">
                 <AlertTriangle size={16} strokeWidth={2.5} />
                 High Risk
               </div>
-              <p className="text-4xl font-bold tracking-tight text-slate-100">{highRiskCount}</p>
+              <p className="text-4xl font-bold tracking-tight text-foreground">{highRiskCount}</p>
             </CardContent>
           </Card>
           
-          <Card className="border-slate-700/40 bg-slate-800/40 backdrop-blur-sm hover:border-yellow-500/50 hover:bg-slate-800/60 transition-all">
+          <Card className="group">
             <CardContent className="p-6">
-              <div className="mb-3 flex items-center gap-2 text-sm font-medium text-yellow-400">
+              <div className="mb-3 flex items-center gap-2 text-sm font-medium text-yellow-600 dark:text-yellow-400">
                 <Zap size={16} strokeWidth={2.5} />
                 Latest Alerts
               </div>
-              <p className="text-4xl font-bold tracking-tight text-slate-100">{incidents.length}</p>
+              <p className="text-4xl font-bold tracking-tight text-foreground">{incidents.length}</p>
             </CardContent>
           </Card>
         </div>

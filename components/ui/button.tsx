@@ -11,13 +11,13 @@ type Props = {
 
 const variantStyles: Record<Variant, string> = {
   primary:
-    "bg-cyan-500 text-white shadow-md hover:bg-cyan-600 hover:shadow-lg active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900",
-  secondary: "bg-slate-700 text-slate-100 border border-slate-600 hover:bg-slate-600 hover:border-slate-500 active:scale-[0.98]",
-  ghost: "border border-slate-600 bg-transparent text-slate-300 hover:bg-slate-800 hover:text-slate-100 active:scale-[0.98]",
-  outline: "border border-cyan-500/30 bg-transparent text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400 active:scale-[0.98]",
-  danger: "bg-red-500/80 text-white shadow-md hover:bg-red-600 hover:shadow-lg active:scale-[0.98]",
+    "bg-primary text-primary-foreground shadow-sm hover:bg-secondary active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2",
+  secondary: "bg-muted text-foreground border border-border hover:bg-muted/80 active:scale-[0.98]",
+  ghost: "border border-border bg-transparent text-foreground hover:bg-muted active:scale-[0.98]",
+  outline: "border border-primary/30 bg-transparent text-primary hover:bg-primary/10 hover:border-primary active:scale-[0.98]",
+  danger: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 active:scale-[0.98]",
   glass: "glass hover:bg-card/90 active:scale-[0.98] text-foreground",
-  link: "text-cyan-400 underline-offset-4 hover:text-cyan-300 hover:underline",
+  link: "text-primary underline-offset-4 hover:text-secondary hover:underline",
 };
 
 const sizeStyles: Record<Size, string> = {

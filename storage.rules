@@ -20,7 +20,7 @@ service firebase.storage {
 
     match /verification/{uid}/{fileName} {
       allow read: if isOwner(uid) || roleIn(['admin', 'teacher']);
-      allow write: if isOwner(uid) || roleIn(['admin']);
+      allow write: if isOwner(uid) || roleIn(['admin', 'student']);
     }
 
     match /feedback/{attemptId}/{fileName} {

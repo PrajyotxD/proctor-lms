@@ -55,67 +55,106 @@ export function StudentVerificationCard() {
   async function capture() {
     const video = videoRef.current;
     if (!video) {
+      console.error("Video ref not available");
       return;
     }
 
-    setCapturing(true);
-    const canvas = document.createElement("canvas");
-    canvas.width = video.videoWidth || 640;
-    canvas.height = video.videoHeight || 480;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) {
+    try {
+      setCapturing(true);
+      console.log("Capturing frame from video");
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth || 640;
+      canvas.height = video.videoHeight || 480;
+      console.log("Canvas dimensions:", canvas.width, "x", canvas.height);
+      
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        console.error("Failed to get canvas context");
+        setCapturing(false);
+        toast.error("Failed to capture image");
+        return;
+      }
+
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.9));
+      if (!blob) {
+        console.error("Failed to create blob from canvas");
+        setCapturing(false);
+        toast.error("Failed to create image");
+        return;
+      }
+
+      console.log("Snapshot captured, size:", blob.size, "bytes");
+      setSnapshot(blob);
+      toast.success("Selfie captured!");
+    } catch (error) {
+      console.error("Capture failed:", error);
+      toast.error("Failed to capture selfie");
+    } finally {
       setCapturing(false);
-      return;
     }
-
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.9));
-    if (!blob) {
-      setCapturing(false);
-      return;
-    }
-
-    setSnapshot(blob);
-    setCapturing(false);
   }
 
   async function saveVerification() {
     if (!services || !user) {
+      console.error("Missing services or user");
+      toast.error("Services not ready");
       return;
     }
 
     if (!rollNumber.trim()) {
+      console.warn("Roll number is empty");
       toast.error("Roll number is required");
       return;
     }
 
     if (!snapshot) {
+      console.warn("No snapshot captured");
       toast.error("Capture selfie first");
       return;
     }
 
-    const path = `verification/${user.uid}/selfie-${now()}.jpg`;
-    await uploadBytes(ref(services.storage, path), snapshot, { contentType: "image/jpeg" });
+    try {
+      console.log("Starting verification save for user:", user.uid);
+      
+      // Upload selfie to storage
+      const path = `verification/${user.uid}/selfie-${now()}.jpg`;
+      console.log("Uploading selfie to:", path);
+      await uploadBytes(ref(services.storage, path), snapshot, { contentType: "image/jpeg" });
+      console.log("Selfie uploaded successfully");
 
-    await setDoc(
-      doc(services.db, "verifications", user.uid),
-      {
-        uid: user.uid,
+      // Create verification document
+      console.log("Creating verification document");
+      await setDoc(
+        doc(services.db, "verifications", user.uid),
+        {
+          uid: user.uid,
+          rollNumber: rollNumber.trim(),
+          selfiePath: path,
+          verifiedAt: now(),
+        },
+        { merge: true },
+      );
+      console.log("Verification document created");
+
+      // Update user profile
+      console.log("Updating user profile");
+      await updateDoc(doc(services.db, "users", user.uid), {
         rollNumber: rollNumber.trim(),
-        selfiePath: path,
+        verificationPhotoPath: path,
         verifiedAt: now(),
-      },
-      { merge: true },
-    );
+        updatedAt: now(),
+      });
+      console.log("User profile updated");
 
-    await updateDoc(doc(services.db, "users", user.uid), {
-      rollNumber: rollNumber.trim(),
-      verificationPhotoPath: path,
-      verifiedAt: now(),
-      updatedAt: now(),
-    });
-
-    toast.success("Verification saved");
+      toast.success("Verification saved successfully!");
+      setStep(1);
+      setSnapshot(null);
+    } catch (error) {
+      console.error("Verification save failed:", error);
+      const message = error instanceof Error ? error.message : "Failed to save verification";
+      toast.error(message);
+    }
   }
 
   return (

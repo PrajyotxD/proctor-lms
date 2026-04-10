@@ -21,6 +21,7 @@ export function AdminManagementPanel() {
   const [newUserEmail, setNewUserEmail] = useState("");
   const [newUserPassword, setNewUserPassword] = useState("");
   const [newUserRole, setNewUserRole] = useState<"teacher" | "student">("teacher");
+  const [newUserRollNumber, setNewUserRollNumber] = useState("");
   const [selectedUserId, setSelectedUserId] = useState("");
   const [selectedRole, setSelectedRole] = useState<UserProfile["role"]>("student");
   const [selectedSubjectId, setSelectedSubjectId] = useState("");
@@ -90,6 +91,7 @@ export function AdminManagementPanel() {
           email: newUserEmail.trim(),
           password: newUserPassword,
           role: newUserRole,
+          ...(newUserRole === "student" ? { rollNumber: newUserRollNumber.trim() } : {}),
         }),
       });
 
@@ -102,6 +104,7 @@ export function AdminManagementPanel() {
       setNewUserEmail("");
       setNewUserPassword("");
       setNewUserRole("teacher");
+      setNewUserRollNumber("");
       toast.success("Account created in Firebase");
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Failed to create account");
@@ -157,6 +160,14 @@ export function AdminManagementPanel() {
             <option value="teacher">Teacher</option>
             <option value="student">Student</option>
           </select>
+          {newUserRole === "student" && (
+            <Input 
+              className="border-slate-600 bg-slate-900/65 text-slate-100 placeholder:text-slate-400" 
+              value={newUserRollNumber} 
+              onChange={(e) => setNewUserRollNumber(e.target.value)} 
+              placeholder="Roll Number (optional)" 
+            />
+          )}
           <Button onClick={createManagedUser} className="md:col-span-2">Create account in Firebase</Button>
         </CardContent>
       </Card>

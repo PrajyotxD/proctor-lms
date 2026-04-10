@@ -7,6 +7,7 @@ const payloadSchema = z.object({
   email: z.email("Valid email is required"),
   password: z.string().min(8, "Password must be at least 8 characters"),
   role: z.enum(["teacher", "student"]),
+  rollNumber: z.string().optional(),
 });
 
 function getBearerToken(req: NextRequest) {
@@ -46,7 +47,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Only admins can create accounts" }, { status: 403 });
   }
 
-  const { fullName, email, password, role } = parsed.data;
+  const { fullName, email, password, role, rollNumber } = parsed.data;
 
   try {
     const created = await services.auth.createUser({
@@ -66,7 +67,7 @@ export async function POST(req: NextRequest) {
       createdAt: now,
       updatedAt: now,
       ...(role === "teacher" ? { teacherSubjectIds: [] } : { studentSubjectIds: [] }),
-      ...(role === "student" ? { rollNumber: "" } : {}),
+      ...(role === "student" ? { rollNumber: rollNumber ?? "" } : {}),
     });
 
     return NextResponse.json({ uid: created.uid, email: created.email, role });

@@ -66,6 +66,7 @@ export async function POST(req: NextRequest) {
       createdAt: now,
       updatedAt: now,
       ...(role === "teacher" ? { teacherSubjectIds: [] } : { studentSubjectIds: [] }),
+      ...(role === "student" ? { rollNumber: "" } : {}),
     });
 
     return NextResponse.json({ uid: created.uid, email: created.email, role });

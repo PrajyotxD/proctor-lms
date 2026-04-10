@@ -89,11 +89,11 @@ async function main() {
       email,
       fullName,
       role,
-      rollNumber,
       createdAt: now,
       updatedAt: now,
       teacherSubjectIds: [],
       studentSubjectIds: [],
+      ...(role === "student" ? { rollNumber } : {}),
     },
     { merge: true },
   );
